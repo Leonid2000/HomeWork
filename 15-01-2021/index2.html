@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="css/style.css">
+     
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Заменить картинку чака на что-то другое -->
+        <input class="input-name" type="text" name="" id="">
+        <img style="border-radius: 10px;" class="magic-img" src="img/cat.png" alt="">
+        <p class="joke">Здесь будет твой возраст</p>
+        <button class="magic-button">Определить возраст</button>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+
+            document.querySelector(".magic-button").addEventListener('click', async function() {
+                //Заменить адрес, куда обращаемся
+                //https://official-joke-api.appspot.com/jokes/random
+                let input = document.querySelector('.input-name');  // Это само поле для ввода  
+                let name = input.value;
+                let response = await fetch('https://api.agify.io?name=' + name);  
+                const jsonResponse = await response.json();
+                //Изменить перечень полей 
+                const joke = jsonResponse.age;
+
+                document.querySelector(".joke").innerHTML = joke;
+            })
+        });
+        
+    </script>
+</body>
+
+</html>
